@@ -1,12 +1,12 @@
-from dc_base_scrapers.arcgis_scraper import ArcGisScraper
 
 
-stations_url = "https://edinburghcouncilmaps.info/arcgis/rest/services/Misc/INSPIRE/MapServer/7/query?where=OBJECTID+LIKE+%27%25%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=OBJECTID&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson"
-districts_url = "https://edinburghcouncilmaps.info/arcgis/rest/services/Misc/INSPIRE/MapServer/28/query?where=OBJECTID+LIKE+%27%25%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=OBJECTID&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson"
+from dc_base_scrapers.geojson_scraper import GeoJsonScraper
+
+stations_url = "https://opendata.arcgis.com/datasets/89c67161768d432e88982da59af3d093_7.geojson"
+districts_url = "https://opendata.arcgis.com/datasets/2cee9b18a21344b0879c3c51d71fd2c6_28.geojson"
 council_id = 'EDH'
 
-
-stations_scraper = ArcGisScraper(stations_url, council_id, 'utf-8', 'stations')
+stations_scraper = GeoJsonScraper(stations_url, council_id, 'utf-8', 'stations', key='OBJECTID_1')
 stations_scraper.scrape()
-districts_scraper = ArcGisScraper(districts_url, council_id, 'utf-8', 'districts')
+districts_scraper = GeoJsonScraper(districts_url, council_id, 'utf-8', 'districts', key='OBJECTID')
 districts_scraper.scrape()
